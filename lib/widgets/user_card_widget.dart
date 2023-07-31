@@ -22,7 +22,7 @@ class UserCard extends StatelessWidget {
       child: Column(
         children: [
           const TDAvatar(
-            path: "https:/placehold.it/80",
+            path: "https://place-hold.it/80",
             width: 80,
           ),
           const SizedBox(
@@ -40,9 +40,11 @@ class UserCard extends StatelessWidget {
             child: OutlinedButton(
               style: ButtonStyle(
                   shape: MaterialStatePropertyAll(RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10))),
-                  backgroundColor:
-                      MaterialStateProperty.all(Colors.blueAccent)),
+                      borderRadius: BorderRadius.circular(10))
+                      
+                      ),
+                      
+                  ),
               onPressed: () {},
               child: const Text(
                 'Sair',

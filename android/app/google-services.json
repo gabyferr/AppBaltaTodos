@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "380875765645",
+    "project_id": "todos-44b6b",
+    "storage_bucket": "todos-44b6b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:380875765645:android:7958f8dbd8464fc7586fc4",
+        "android_client_info": {
+          "package_name": "io.balta.todos"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "380875765645-9pfq1qkqqt7irmkr9rkfo70fh80gr2f4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.balta.todos",
+            "certificate_hash": "0929991c1521b5bc79115b5a8c76303f89a77741"
+          }
+        },
+        {
+          "client_id": "380875765645-s3gr69ondmp499an3jjfr1jvdsha5sfh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAna6u3_1bQt7P-llPpXdCT4cUwKvtW9_g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "380875765645-s3gr69ondmp499an3jjfr1jvdsha5sfh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

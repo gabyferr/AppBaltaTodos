@@ -39,9 +39,9 @@ class TDButton extends StatelessWidget {
                     width: 10,
                   )
                 : const SizedBox(),
-            const Text(
-              'data',
-              style: TextStyle(
+            Text(
+              text,
+              style: const TextStyle(
                 color: Colors.white,
               ),
             ),
