@@ -19,7 +19,8 @@ class TDButton extends StatelessWidget {
       color: Theme.of(context).primaryColor,
       width: width ?? 250,
       child: ElevatedButton(
-        style: const ButtonStyle(backgroundColor: MaterialStatePropertyAll(Color(0xFFfa4d73))),
+        style: const ButtonStyle(
+            backgroundColor: MaterialStatePropertyAll(Color(0xFFfa4d73))),
         onPressed: () {
           callback;
         },
@@ -38,10 +39,11 @@ class TDButton extends StatelessWidget {
                     width: 10,
                   )
                 : const SizedBox(),
-            const Text('data',
-            style: TextStyle(
-              color: Colors.white,
-             ),
+            const Text(
+              'data',
+              style: TextStyle(
+                color: Colors.white,
+              ),
             ),
           ],
         ),
