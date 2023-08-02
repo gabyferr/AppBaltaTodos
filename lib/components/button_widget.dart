@@ -22,7 +22,7 @@ class TDButton extends StatelessWidget {
         style: const ButtonStyle(
             backgroundColor: MaterialStatePropertyAll(Color(0xFFfa4d73))),
         onPressed: () {
-          callback;
+          callback();
         },
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
