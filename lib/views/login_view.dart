@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:teste_gaby/components/button_widget.dart';
 import 'package:teste_gaby/controllers/login.controller.dart';
+import 'package:teste_gaby/views/home_view.dart';
+import 'package:teste_gaby/widgets/busy_widget.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -19,11 +21,11 @@ class LoginViewState extends State<LoginView> {
       busy = true;
     });
     controller.login().then((data) {
-      // onSuccess();
+       onSuccess();{}
     }).catchError((err) {
       onError();
     }).whenComplete(() {
-      // onComplete();
+      onComplete();
     });
   }
 
@@ -36,7 +38,7 @@ class LoginViewState extends State<LoginView> {
     try {
       final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: 'gaby@gmail.com',
-        password: '12346',
+        password: '123456',
       );
 
       print('deu bom');
@@ -49,40 +51,60 @@ class LoginViewState extends State<LoginView> {
     }
   }
 
+  onSuccess()
+  {
+    Navigator.pushReplacement(
+      context, 
+      MaterialPageRoute(
+        builder: (context) => HomeView()
+        ),
+    );
+  }
+
+onComplete(){
+  setState(() {
+    busy = false;
+  });
+}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: ScaffoldKey,
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.all(30),
-          child: Card(
-            child: Column(
-              children: [
-                const SizedBox(
-                  width: double.infinity,
-                ),
-                Image.asset(
-                  "assets/images/notification.png",
-                  width: 250,
-                ),
-                const Text(
-                  'Olá desconhecido',
-                  style: TextStyle(fontSize: 20),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                TDButton(
-                  text: 'Login com Google',
-                  image: 'assets/images/google.png',
-                  callback: () async {
-                    await aaa();
-                  },
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-              ],
+           child: TDBusy(
+            busy: busy,
+            child: Card(
+              child: Column(
+                children: [
+                  const SizedBox(
+                    width: double.infinity,
+                  ),
+                  Image.asset(
+                    "assets/images/notification.png",
+                    width: 250,
+                  ),
+                  const Text(
+                    'Olá desconhecido',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  TDButton(
+                    text: 'Login com Google',
+                    image: 'assets/images/google.png',
+                    callback: () async {
+                      await handleSingnIn();
+                    },
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                ],
+              ),
             ),
           ),
         ),
