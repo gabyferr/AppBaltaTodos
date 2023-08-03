@@ -22,7 +22,7 @@
           }
         },
         {
-          "client_id": "380875765645-s3gr69ondmp499an3jjfr1jvdsha5sfh.apps.googleusercontent.com",
+          "client_id": "380875765645-4a35jmpbr913n272hr9l5pprhqh44f4c.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -35,8 +35,15 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "380875765645-s3gr69ondmp499an3jjfr1jvdsha5sfh.apps.googleusercontent.com",
+              "client_id": "380875765645-4a35jmpbr913n272hr9l5pprhqh44f4c.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "380875765645-0ad8agst12e0i7p6lnkbn5h2qgo4m0lv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.testeGaby"
+              }
             }
           ]
         }

@@ -1,4 +1,4 @@
-package com.example.teste_gaby
+package io.balta.todos
 
 import io.flutter.embedding.android.FlutterActivity
 

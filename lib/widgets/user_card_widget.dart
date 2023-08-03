@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:teste_gaby/components/avatar_widget.dart';
+import 'package:teste_gaby/controllers/login.controller.dart';
 
 class UserCard extends StatelessWidget {
-  const UserCard({super.key});
+  UserCard({super.key});
+  final controller = LoginController();
 
   @override
   Widget build(Object context) {
@@ -21,14 +23,15 @@ class UserCard extends StatelessWidget {
       alignment: Alignment.center,
       child: Column(
         children: [
-          const TDAvatar(
-            path: "https://place-hold.it/80",
+          TDAvatar(
+            path: null,
             width: 80,
           ),
           const SizedBox(
             height: 20,
           ),
           const Text(
+            // user.name
             "Marco Antonio",
             style: TextStyle(color: Colors.white),
           ),
@@ -39,13 +42,19 @@ class UserCard extends StatelessWidget {
             height: 20,
             child: OutlinedButton(
               style: ButtonStyle(
-                  shape: MaterialStatePropertyAll(RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10))
-                      
-                      ),
-                      
-                  ),
-              onPressed: () {},
+                shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10))),
+              ),
+              onPressed: () {
+                // controller.logout().then((sata) {
+                //   Navigator.push(
+                //     context,
+                //     MaterialPageRoute(
+                //       builder: (context) => LoginView(),
+                //     ),
+                //   );
+                // });
+              },
               child: const Text(
                 'Sair',
                 style: TextStyle(color: Colors.white),

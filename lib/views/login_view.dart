@@ -1,7 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:teste_gaby/components/button_widget.dart';
 import 'package:teste_gaby/controllers/login.controller.dart';
+import 'package:teste_gaby/views/create_todo_view.dart';
 import 'package:teste_gaby/views/home_view.dart';
 import 'package:teste_gaby/widgets/busy_widget.dart';
 
@@ -16,56 +16,31 @@ class LoginViewState extends State<LoginView> {
   final ScaffoldKey = new GlobalKey<ScaffoldState>();
   var busy = false;
 
-  handleSingnIn() {
-    setState(() {
-      busy = true;
-    });
-    controller.login().then((data) {
-       onSuccess();{}
-    }).catchError((err) {
-      onError();
-    }).whenComplete(() {
-      onComplete();
-    });
-  }
-
-  onError() {
-    var snackbar = new SnackBar(content: new Text("Falha no login"));
-    // ScaffoldKey.currentState.showSnackBar(snackbar);
-  }
-
-  aaa() async {
+  Future handleSingnIn() async {
     try {
-      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: 'gaby@gmail.com',
-        password: '123456',
-      );
+      final result = await controller.login();
+      if (result.token != null) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const CreateTodoView()),
+        );
+        return;
+      } else {
+        const snackBar = SnackBar(
+          content: Text('email ou senha invaido'),
+        );
 
-      print('deu bom');
-    } catch (e) {
-      const snackBar = SnackBar(
-        content: Text('email ou senha invaido'),
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      }
+    } catch (err) {
+      var snackBar = SnackBar(
+        content: Text('$err'),
+        backgroundColor: Colors.red,
       );
 
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
   }
-
-  onSuccess()
-  {
-    Navigator.pushReplacement(
-      context, 
-      MaterialPageRoute(
-        builder: (context) => HomeView()
-        ),
-    );
-  }
-
-onComplete(){
-  setState(() {
-    busy = false;
-  });
-}
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +49,7 @@ onComplete(){
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.all(30),
-           child: TDBusy(
+          child: TDBusy(
             busy: busy,
             child: Card(
               child: Column(

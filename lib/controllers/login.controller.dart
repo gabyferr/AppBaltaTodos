@@ -3,16 +3,27 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:teste_gaby/user.dart';
 
 class LoginController {
-  final GoogleSignIn _googleSignIn = GoogleSignIn();
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  static final LoginController _singleton = LoginController._internal();
 
-  Future login() async {
+  factory LoginController() {
+    return _singleton;
+  }
+
+  LoginController._internal();
+
+  Future<IUser> login() async {
+    final GoogleSignIn _googleSignIn = GoogleSignIn();
+    final FirebaseAuth _auth = FirebaseAuth.instance;
     final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
-    final GoogleSignInAuthentication googleAuth =
-        await googleUser!.authentication;
-        
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
+
+    if (googleAuth != null) {
+      return IUser();
+    }
+
     final AuthCredential credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth.accessToken,
+      accessToken: googleAuth!.accessToken,
       idToken: googleAuth.idToken,
     );
 
@@ -21,14 +32,19 @@ class LoginController {
 
     var token = await firebaseUser?.getIdToken();
 
-    user.name = firebaseUser!.displayName!;
-    user.email = firebaseUser.email!;
-    user.picture = firebaseUser.photoURL!;
-    user.token = token!;
+    return IUser(
+      email: firebaseUser?.email,
+      name: firebaseUser?.displayName,
+      picture: firebaseUser?.photoURL,
+      token: token,
+    );
+  }
 
-    Future logout() async {
-      await FirebaseAuth.instance.signOut();
-      user = IUser();
-    }
+  bool isLogado() {
+    return false;
+  }
+
+  Future logout() async {
+    await FirebaseAuth.instance.signOut();
   }
 }
