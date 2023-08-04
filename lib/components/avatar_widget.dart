@@ -9,8 +9,8 @@ class TDAvatar extends StatelessWidget {
   Widget build(BuildContext context) {
     if (path == null) {
       return FlutterLogo();
-    }
-
+     } 
+   
     return Container(
       width: width,
       height: width,

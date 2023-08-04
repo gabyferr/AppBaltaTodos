@@ -25,6 +25,7 @@ class MyApp extends StatelessWidget {
       title: 'Todos',
       theme: appTheme(),
       home: const LoginView(),
+      
     );
   }
 }

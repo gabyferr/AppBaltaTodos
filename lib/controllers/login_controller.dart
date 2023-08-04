@@ -4,23 +4,21 @@ import 'package:teste_gaby/user.dart';
 
 class LoginController {
   static final LoginController _singleton = LoginController._internal();
+  late IUser user;
 
   factory LoginController() {
     return _singleton;
   }
+    final GoogleSignIn _googleSignIn = GoogleSignIn();
+    final FirebaseAuth _auth = FirebaseAuth.instance;
 
   LoginController._internal();
 
   Future<IUser> login() async {
-    final GoogleSignIn _googleSignIn = GoogleSignIn();
-    final FirebaseAuth _auth = FirebaseAuth.instance;
     final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
     final GoogleSignInAuthentication? googleAuth =
         await googleUser?.authentication;
 
-    if (googleAuth != null) {
-      return IUser();
-    }
 
     final AuthCredential credential = GoogleAuthProvider.credential(
       accessToken: googleAuth!.accessToken,
@@ -32,7 +30,7 @@ class LoginController {
 
     var token = await firebaseUser?.getIdToken();
 
-    return IUser(
+    return user = IUser(
       email: firebaseUser?.email,
       name: firebaseUser?.displayName,
       picture: firebaseUser?.photoURL,

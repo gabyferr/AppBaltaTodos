@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:teste_gaby/components/button_widget.dart';
-import 'package:teste_gaby/controllers/login.controller.dart';
-import 'package:teste_gaby/views/create_todo_view.dart';
+import 'package:teste_gaby/controllers/login_controller.dart';
 import 'package:teste_gaby/views/home_view.dart';
 import 'package:teste_gaby/widgets/busy_widget.dart';
 
@@ -22,7 +21,7 @@ class LoginViewState extends State<LoginView> {
       if (result.token != null) {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const CreateTodoView()),
+          MaterialPageRoute(builder: (context) => const HomeView()),
         );
         return;
       } else {
