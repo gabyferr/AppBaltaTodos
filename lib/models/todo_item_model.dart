@@ -8,11 +8,10 @@ DateTime date;
 
 TodoItem({required this.id, required this.title, required this.done, required this.date});
 
-  TodoItem.fromJson(Map<String, dynamic> json){
-  id = json['id'];
-  title = json['done'];
-  done = json['done'];
-  date = DateTime.parse(json['date']);
+  factory TodoItem.fromJson(Map<String, dynamic> json){
+  
+  return TodoItem(id: json['id'], title: json['title'], done: json['done'], date: json['date']);
+
 }
 
 Map<String, dynamic> toJson(){

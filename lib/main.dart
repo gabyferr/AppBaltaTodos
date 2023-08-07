@@ -1,6 +1,8 @@
 // import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:teste_gaby/store/app_store.dart';
 import 'package:teste_gaby/themes/app_theme.dart';
 import 'package:teste_gaby/views/login_view.dart';
 import 'firebase_options.dart';
@@ -20,12 +22,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MultiProvider(providers: [
+     Provider<AppStore>.value(
+      value: AppStore(),
+     ),
+    ],
+      child: MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Todos',
       theme: appTheme(),
       home: const LoginView(),
-      
+      ),
     );
   }
 }
