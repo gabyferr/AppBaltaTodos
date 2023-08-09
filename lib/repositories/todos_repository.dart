@@ -26,24 +26,10 @@ class TodosRepository{
    );
    await Future.delayed(const Duration(milliseconds: 1500),() {});
    return todos;
+  }  
+   Future<TodoItem?> add (TodoItem item) async{
+    return null;
   }
-  Future<TodoItem?> add (TodoItem item) async{
-   var todos = <TodoItem>[];
-   todos.add(
-    TodoItem(
-      id: "1234567", 
-      title: "Amanhã", 
-      done: false, 
-      date: DateTime.now())
-   );
-  //  await Future.delayed(const Duration(milliseconds: 1500),() {});
-  //  return todos;
-  }
-  
-  //  Future<TodoItem?> add (TodoItem item) async{
-  //   return null;
-    // return TodoItem(id: '0', title: 'title', done: true, date: DateTime.now());
-  // }
     Future<TodoItem?> marckAsDone (TodoItem item) async{
     return null;
     }

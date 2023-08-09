@@ -5,8 +5,8 @@ class TodoController{
   late AppStore _store;
   late TodosRepository _repository;
 
-  TodoController(AppStorestore){
-    _store = _store;
+  TodoController(AppStore store){
+    _store = store;
     _repository = TodosRepository();
   }
 

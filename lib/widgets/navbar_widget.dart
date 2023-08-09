@@ -6,7 +6,7 @@ import 'package:teste_gaby/store/app_store.dart';
 
 class NavBar extends StatelessWidget {
   NavBar({super.key});
-//kkkkkkkkkkkkkkkkkkkkk
+
   @override
   Widget build(BuildContext context) {
     final store = Provider.of<AppStore>(context);

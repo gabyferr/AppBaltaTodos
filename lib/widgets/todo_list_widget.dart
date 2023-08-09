@@ -1,34 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
+import 'package:teste_gaby/widgets/busy_widget.dart';
+
+import '../store/app_store.dart';
 
 class TodosList extends StatelessWidget {
-  const TodosList({super.key});
-
+  TodosList({super.key});
+  final dateFormat = DateFormat('dd/MM/yyyy');
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      padding: const EdgeInsets.only(left: 40),
-      children: [
-        const ListTile(
-          title: Text(
-            "Ir ao supermercado",
-            style: TextStyle(
-              fontSize: 18,
-              color: Colors.black,
-            ),
-          ),
-          subtitle: Text('02/12/2020'),
-        ),
-        ListTile(
-          title: Text(
-            "Ir a academia",
-            style: TextStyle(
-              fontSize: 18,
-              color: Colors.black.withOpacity(0.2),
-            ),
-          ),
-          subtitle: const Text('02/12/2020'),
-        ),
-      ],
+    final store = Provider.of<AppStore>(context);
+    final _dateFormat = DateFormat('dd/MM/yyyy');
+    return Observer(
+      builder: (_) =>
+      TDBusy(busy:  store.busy,
+      child:store.todos.length == 0
+      ?Center(
+      child: Text('Nenhuma tarefa encontrada!'),
+      )
+      : ListView.builder(itemBuilder: (BuildContext context, int index) { 
+          return SizedBox();
+        },
+       ), 
+      )
     );
   }
 }
