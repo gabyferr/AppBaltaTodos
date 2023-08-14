@@ -115,7 +115,7 @@ class _CreateTodoViewState extends State<CreateTodoView> {
                 text: "Salvar",
                 width: double.infinity,
                 callback: () {
-                  if (!_formkey.currentState!.validate()) {
+                  if (_formkey.currentState!.validate()) {
                     return;
                   }
                   _formkey.currentState!.save();
