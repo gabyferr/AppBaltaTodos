@@ -24,7 +24,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-   HttpOverrides.global= MyHttpOverrides();
+  HttpOverrides.global = MyHttpOverrides();
   //await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
   runApp(const MyApp());
 }
@@ -34,16 +34,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(providers: [
-     Provider<AppStore>.value(
-      value: AppStore(),
-     ),
-    ],
+    return MultiProvider(
+      providers: [
+        Provider<AppStore>.value(
+          value: AppStore(),
+        ),
+      ],
       child: MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Todos',
-      theme: appTheme(),
-      home: const LoginView(),
+        debugShowCheckedModeBanner: false,
+        title: 'Todos',
+        theme: appTheme(),
+        home: const LoginView(),
       ),
     );
   }

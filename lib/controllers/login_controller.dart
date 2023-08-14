@@ -9,8 +9,8 @@ class LoginController {
   factory LoginController() {
     return _singleton;
   }
-    final GoogleSignIn _googleSignIn = GoogleSignIn();
-    final FirebaseAuth _auth = FirebaseAuth.instance;
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   LoginController._internal();
 
@@ -18,7 +18,6 @@ class LoginController {
     final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
     final GoogleSignInAuthentication? googleAuth =
         await googleUser?.authentication;
-
 
     final AuthCredential credential = GoogleAuthProvider.credential(
       accessToken: googleAuth!.accessToken,

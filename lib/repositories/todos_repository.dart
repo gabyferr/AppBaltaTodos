@@ -1,36 +1,78 @@
+import 'dart:io';
+
+import 'package:dio/dio.dart';
 import 'package:teste_gaby/models/todo_item_model.dart';
 
-class TodosRepository{
+class TodosRepository {
+  final String token;
+
+  TodosRepository(this.token);
+
   Future<List<TodoItem>> getTodayTodos() async {
-    return <TodoItem>[];
+    var url = "https://10.0.2.2:5001/v1/todos/undone/today";
+    Response response = await Dio().get(
+      url,
+      options: Options(
+          headers: {HttpHeaders.authorizationHeader: 'Bearer ${token}'}),
+    );
+    return (response.data as List)
+        .map((todos) => TodoItem.fromJson(todos))
+        .toList();
   }
+
   Future<List<TodoItem>?> getTomorrowTodos() async {
-   var todos = <TodoItem>[];
-   todos.add(
-    TodoItem(
-      id: "123456", 
-      title: "Amanhã", 
-      done: false, 
-      date: DateTime.now())
-   );
-   await Future.delayed(const Duration(milliseconds: 1500),() {});
-   return todos;
+    var url = "https://10.0.2.2:5001/v1/todos/undone/tomorrow";
+    Response response = await Dio().get(
+      url,
+      options: Options(
+          headers: {HttpHeaders.authorizationHeader: 'Bearer ${token}'}),
+    );
+    return (response.data as List)
+        .map((todos) => TodoItem.fromJson(todos))
+        .toList();
   }
+
   Future<List<TodoItem>?> getAllTodos() async {
-    var todos = <TodoItem>[];
-      TodoItem(
-      id: "123456", 
-      title: "hoje", 
-      done: false, 
-      date: DateTime.now()
-   );
-   await Future.delayed(const Duration(milliseconds: 1500),() {});
-   return todos;
-  }  
-   Future<TodoItem?> add (TodoItem item) async{
-    return null;
+    var url = "https://10.0.2.2:5001/v1/todos";
+    Response response = await Dio().get(
+      url,
+      options: Options(
+          headers: {HttpHeaders.authorizationHeader: 'Bearer ${token}'}),
+    );
+    return (response.data as List)
+        .map((todos) => TodoItem.fromJson(todos))
+        .toList();
   }
-    Future<TodoItem?> marckAsDone (TodoItem item) async{
-    return null;
+
+  Future<TodoItem?> add(TodoItem item) async {
+    var url = "https://10.0.2.2:5001/v1/todos/undone/today";
+    try {
+      Response response = await Dio().post(
+        url,
+        data: item,
+        options: Options(
+            headers: {HttpHeaders.authorizationHeader: 'Bearer ${token}'}),
+      );
+      return TodoItem.fromJson(response.data["data"]);
+    } catch (e) {
+      return null;
     }
+  }
+
+  Future<TodoItem?> marckAsDone(
+    TodoItem item,
+  ) async {
+    var url = "https://10.0.2.2:5001/v1/todos/undone/today";
+    try {
+      Response response = await Dio().post(
+        url,
+        data: item,
+        options: Options(
+            headers: {HttpHeaders.authorizationHeader: 'Bearer ${token}'}),
+      );
+      return TodoItem.fromJson(response.data["data"]);
+    } catch (e) {
+      return null;
+    }
+  }
 }

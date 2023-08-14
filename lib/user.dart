@@ -12,5 +12,3 @@ class IUser {
     this.token,
   });
 }
-
-IUser user = IUser();
